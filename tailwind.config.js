@@ -20,6 +20,7 @@ export default {
       animation: {
         'warden-float': 'wardenFloat 20s ease-in-out infinite',
         'sculk-pulse': 'sculkPulse 3s ease-in-out infinite',
+        'warden-walk': 'wardenWalk 25s linear infinite',
       },
       keyframes: {
         wardenFloat: {
@@ -31,6 +32,15 @@ export default {
         sculkPulse: {
           '0%, 100%': { opacity: '0.6' },
           '50%': { opacity: '1' },
+        },
+        wardenWalk: {
+          '0%': { transform: 'translateX(0) scaleX(1)', opacity: '0' },
+          '5%': { opacity: '1' },
+          '45%': { transform: 'translateX(120vw) scaleX(1)', opacity: '1' },
+          '50%': { transform: 'translateX(120vw) scaleX(-1)', opacity: '0' },
+          '55%': { opacity: '1' },
+          '95%': { transform: 'translateX(-20vw) scaleX(-1)', opacity: '1' },
+          '100%': { transform: 'translateX(-20vw) scaleX(1)', opacity: '0' },
         }
       }
     },
