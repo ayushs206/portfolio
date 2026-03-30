@@ -1,107 +1,76 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { ArrowDown, Github, Linkedin, Mail } from 'lucide-react';
+import { useEffect, useRef } from 'react';
 
-import { Typewriter } from 'react-simple-typewriter';
+export default function Hero() {
+  const heroRef = useRef(null);
 
-export const Hero = () => {
+  // Implement "on scroll we move to about section"
+  useEffect(() => {
+    let isScrolling = false;
+
+    const handleScroll = (e) => {
+      // If user scrolls down while at the top, cleanly transition to about
+      if (window.scrollY < 10 && e.deltaY > 0 && !isScrolling) {
+        e.preventDefault();
+        isScrolling = true;
+
+        const aboutSection = document.getElementById('about');
+        if (aboutSection) {
+          aboutSection.scrollIntoView({ behavior: 'smooth' });
+
+          // Unlock scrolling after the smooth scroll completes (~1 second)
+          setTimeout(() => {
+            isScrolling = false;
+          }, 1000);
+        }
+      }
+    };
+
+    // Use passive false to be able to preventDefault if needed
+    window.addEventListener('wheel', handleScroll, { passive: false });
+    return () => window.removeEventListener('wheel', handleScroll);
+  }, []);
+
   return (
-    <section id="home" className="section" style={{ 
-      minHeight: '100vh', 
-      display: 'flex', 
-      flexDirection: 'column',
-      justifyContent: 'center',
-      position: 'relative'
-    }}>
-      <motion.div 
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        style={{ maxWidth: '800px' }}
+    <section
+      ref={heroRef}
+      id="hero"
+      className="relative w-full h-screen overflow-hidden flex flex-col items-center justify-center snap-start"
+    >
+      {/* Background Image: Ancient City */}
+      {/* We will swap the placeholder with the actual generated image shortly */}
+      <div
+        className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat transition-transform duration-[10s] hover:scale-105"
+        style={{ backgroundImage: "url('/ancient_city.png'), linear-gradient(to bottom, #061014, #001f24)" }}
       >
-        <motion.p 
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.2, duration: 0.8 }}
-          style={{ 
-            color: 'var(--accent-color)', 
-            fontWeight: '600', 
-            letterSpacing: '1px',
-            marginBottom: '1rem',
-            textTransform: 'uppercase'
-          }}
-        >
-          1st Year B.Tech Student
-        </motion.p>
-        
-        <h1 style={{ fontSize: 'clamp(3rem, 8vw, 5rem)', marginBottom: '1.5rem', lineHeight: '1.1' }}>
-          Hi, I'm <span className="text-gradient">Ayush Singla</span>.<br />
-          Crafting <span style={{ color: 'transparent', WebkitTextStroke: '1px var(--text-primary)' }}>
-            <Typewriter
-              words={['Digital Experiences.', 'Robust APIs.', 'Web Applications.', 'Discord Bots.']}
-              loop={0}
-              cursor
-              cursorStyle='_'
-              typeSpeed={70}
-              deleteSpeed={50}
-              delaySpeed={1500}
-            />
-          </span>
-        </h1>
-        
-        <p style={{ 
-          fontSize: '1.25rem', 
-          color: 'var(--text-secondary)', 
-          maxWidth: '600px', 
-          marginBottom: '2.5rem',
-          lineHeight: '1.8'
-        }}>
-          Currently studying at Thapar University. I specialize in building web applications, expressive APIs, and engaging Discord bots with C, C++, and Node.js.
-        </p>
-        
-        <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
-          <a href="#about" className="btn-primary">
-            More About Me
-          </a>
-          <div style={{ display: 'flex', gap: '1rem', marginLeft: '1rem', alignItems: 'center' }}>
-            <a href="https://github.com/ayushs206" target="_blank" rel="noreferrer" className="btn-secondary" style={{ padding: '0.75rem' }}>
-              <Github size={20} />
-            </a>
-            <a href="https://linkedin.com/in/ayushs206" target="_blank" rel="noreferrer" className="btn-secondary" style={{ padding: '0.75rem' }}>
-              <Linkedin size={20} />
-            </a>
-            <a href="mailto:ayushsingla206@gmail.com" className="btn-secondary" style={{ padding: '0.75rem' }}>
-              <Mail size={20} />
-            </a>
-          </div>
-        </div>
-      </motion.div>
+        <div className="absolute inset-0 bg-black/40"></div>
+      </div>
 
-      <motion.div 
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1, duration: 1 }}
-        style={{ 
-          position: 'absolute', 
-          bottom: '2rem', 
-          left: '50%', 
-          transform: 'translateX(-50%)',
-          animation: 'bounce 2s infinite'
-        }}
-      >
-        <style>
-          {`
-            @keyframes bounce {
-              0%, 20%, 50%, 80%, 100% { transform: translateY(0) translateX(-50%); }
-              40% { transform: translateY(-20px) translateX(-50%); }
-              60% { transform: translateY(-10px) translateX(-50%); }
-            }
-          `}
-        </style>
-        <a href="#about" style={{ color: 'var(--text-secondary)', textDecoration: 'none' }}>
-          <ArrowDown size={32} />
-        </a>
-      </motion.div>
+      {/* Wandering Warden
+      <div className="absolute bottom-[10%] left-[-10%] z-10 animate-warden-walk w-48 h-48 md:w-64 md:h-64 opactiy-90">
+        <img
+          src="/warden.png"
+          alt="Wandering Warden"
+          className="w-full h-full object-contain filter drop-shadow-[0_0_15px_rgba(10,178,176,0.6)]"
+        />
+      </div> */}
+
+      <div className="z-20 text-center relative pointer-events-none mt-[-10vh]">
+        <h1 className="text-6xl md:text-8xl text-warden-glow drop-shadow-[0_4px_4px_rgba(0,0,0,1)] tracking-widest mb-4">
+          AYUSH SINGLA
+        </h1>
+        <p className="text-xl md:text-3xl text-gray-300 drop-shadow-[0_2px_2px_rgba(0,0,0,1)]">
+          Turning Ideas into High-Performance Products.
+        </p>
+      </div>
+
+      {/* Scroll Down Indicator */}
+      <div className="absolute bottom-10 z-20 animate-bounce flex flex-col items-center opacity-80 cursor-pointer pointer-events-auto"
+        onClick={() => document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' })}>
+        <span className="text-sculk-teal text-sm md:text-base mb-2">Scroll Down</span>
+        <svg className="w-8 h-8 text-sculk-teal" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+        </svg>
+      </div>
     </section>
   );
-};
+}

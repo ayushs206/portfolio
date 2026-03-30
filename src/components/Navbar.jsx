@@ -1,116 +1,81 @@
-import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
-import { Menu, X } from 'lucide-react';
+import { useState } from 'react';
 
-export const Navbar = () => {
-  const [scrolled, setScrolled] = useState(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+export default function Navbar() {
+  const [isOpen, setIsOpen] = useState(false);
 
   const navLinks = [
-    { name: 'Home', href: '#home' },
     { name: 'About', href: '#about' },
-    { name: 'Skills', href: '#skills' },
+    { name: 'Journey', href: '#journey' },
     { name: 'Projects', href: '#projects' },
+    { name: 'Contact', href: '#contact' }
   ];
 
   return (
-    <motion.nav 
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.5 }}
-      style={{
-        position: 'fixed',
-        top: 0,
-        left: 0,
-        right: 0,
-        zIndex: 50,
-        padding: '1rem 2rem',
-        background: scrolled ? 'rgba(13, 13, 13, 0.8)' : 'transparent',
-        backdropFilter: scrolled ? 'blur(12px)' : 'none',
-        borderBottom: scrolled ? '1px solid rgba(255,255,255,0.05)' : '1px solid transparent',
-        transition: 'all 0.3s ease'
-      }}
-    >
-      <div style={{ maxWidth: '1200px', margin: '0 auto', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-        <a href="#home" style={{ fontSize: '1.5rem', fontWeight: 'bold', textDecoration: 'none', color: 'var(--text-primary)', fontFamily: 'var(--font-display)' }}>
-          Portfolio<span className="text-gradient">.</span>
-        </a>
-
-        {/* Desktop Nav */}
-        <div className="desktop-nav" style={{ display: 'none', gap: '2rem' }}>
-          <style>{`
-            @media (min-width: 768px) {
-              .desktop-nav { display: flex !important; }
-              .mobile-toggle { display: none !important; }
-            }
-          `}</style>
-          {navLinks.map((link) => (
-            <a 
-              key={link.name} 
-              href={link.href}
-              style={{ 
-                color: 'var(--text-secondary)', 
-                textDecoration: 'none',
-                fontWeight: '500',
-                transition: 'color 0.2s'
-              }}
-              onMouseOver={(e) => e.target.style.color = 'var(--text-primary)'}
-              onMouseOut={(e) => e.target.style.color = 'var(--text-secondary)'}
-            >
-              {link.name}
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-sculk-bg/80 backdrop-blur-md border-b-2 border-sculk-dark-teal transition-all duration-300">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-16">
+          <div className="flex-shrink-0">
+            <a href="#" className="font-minecraft text-2xl text-sculk-teal hover:text-warden-glow transition-colors duration-200">
+              <span className="text-gray-300">A</span>yush.
             </a>
-          ))}
-        </div>
+          </div>
 
-        {/* Mobile Toggle */}
-        <button 
-          className="mobile-toggle btn-secondary" 
-          style={{ padding: '0.5rem', display: 'flex' }}
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-        >
-          {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
+          {/* Desktop Menu */}
+          <div className="hidden md:block">
+            <div className="ml-10 flex items-baseline space-x-8">
+              {navLinks.map((link) => (
+                <a
+                  key={link.name}
+                  href={link.href}
+                  className="text-gray-300 hover:text-warden-glow hover:bg-deepslate/50 px-3 py-2 rounded-md font-minecraft text-xl transition-all duration-200 shadow-[inset_0_-2px_0_0_transparent] hover:shadow-[inset_0_-2px_0_0_#0ab2b0]"
+                >
+                  {link.name}
+                </a>
+              ))}
+            </div>
+          </div>
+
+          {/* Mobile Menu Button */}
+          <div className="-mr-2 flex md:hidden">
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              type="button"
+              className="inline-flex items-center justify-center p-2 rounded-md text-sculk-teal hover:text-warden-glow hover:bg-deepslate focus:outline-none"
+              aria-controls="mobile-menu"
+              aria-expanded="false"
+            >
+              <span className="sr-only">Open main menu</span>
+              {!isOpen ? (
+                <svg className="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+              ) : (
+                <svg className="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              )}
+            </button>
+          </div>
+        </div>
       </div>
 
       {/* Mobile Menu */}
-      {mobileMenuOpen && (
-        <motion.div 
-          initial={{ opacity: 0, height: 0 }}
-          animate={{ opacity: 1, height: 'auto' }}
-          style={{ 
-            background: 'var(--bg-color)', 
-            padding: '1rem 2rem', 
-            borderBottom: '1px solid var(--glass-border)',
-            display: 'flex',
-            flexDirection: 'column',
-            gap: '1rem'
-          }}
-        >
-          {navLinks.map((link) => (
-            <a 
-              key={link.name} 
-              href={link.href}
-              onClick={() => setMobileMenuOpen(false)}
-              style={{ 
-                color: 'var(--text-primary)', 
-                textDecoration: 'none',
-                fontSize: '1.1rem',
-                padding: '0.5rem 0'
-              }}
-            >
-              {link.name}
-            </a>
-          ))}
-        </motion.div>
+      {isOpen && (
+        <div className="md:hidden bg-sculk-bg/95 border-b-2 border-sculk-dark-teal" id="mobile-menu">
+          <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+            {navLinks.map((link) => (
+              <a
+                key={link.name}
+                href={link.href}
+                onClick={() => setIsOpen(false)}
+                className="text-gray-300 hover:text-warden-glow hover:bg-deepslate block px-3 py-2 rounded-md font-minecraft text-xl border-l-4 border-transparent hover:border-warden-glow transition-all duration-200"
+              >
+                {link.name}
+              </a>
+            ))}
+          </div>
+        </div>
       )}
-    </motion.nav>
+    </nav>
   );
-};
+}
