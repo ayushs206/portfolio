@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-  
+
   const navLinks = [
     { name: 'About', href: '#about' },
     { name: 'Journey', href: '#journey' },
@@ -19,7 +19,7 @@ export default function Navbar() {
               <span className="text-gray-300">A</span>yush.
             </a>
           </div>
-          
+
           {/* Desktop Menu */}
           <div className="hidden md:block">
             <div className="ml-10 flex items-baseline space-x-8">
@@ -34,7 +34,7 @@ export default function Navbar() {
               ))}
             </div>
           </div>
-          
+
           {/* Mobile Menu Button */}
           <div className="-mr-2 flex md:hidden">
             <button

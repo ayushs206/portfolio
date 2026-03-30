@@ -5,19 +5,27 @@ export default function Hero() {
 
   // Implement "on scroll we move to about section"
   useEffect(() => {
+    let isScrolling = false;
+
     const handleScroll = (e) => {
       // If user scrolls down while at the top, cleanly transition to about
-      if (window.scrollY < 10 && e.deltaY > 0) {
+      if (window.scrollY < 10 && e.deltaY > 0 && !isScrolling) {
         e.preventDefault();
+        isScrolling = true;
+
         const aboutSection = document.getElementById('about');
         if (aboutSection) {
           aboutSection.scrollIntoView({ behavior: 'smooth' });
+
+          // Unlock scrolling after the smooth scroll completes (~1 second)
+          setTimeout(() => {
+            isScrolling = false;
+          }, 1000);
         }
       }
     };
 
-    // Use passive false to be able to preventDefault if needed, 
-    // but just capturing the wheel is fine
+    // Use passive false to be able to preventDefault if needed
     window.addEventListener('wheel', handleScroll, { passive: false });
     return () => window.removeEventListener('wheel', handleScroll);
   }, []);
@@ -48,10 +56,10 @@ export default function Hero() {
 
       <div className="z-20 text-center relative pointer-events-none mt-[-10vh]">
         <h1 className="text-6xl md:text-8xl text-warden-glow drop-shadow-[0_4px_4px_rgba(0,0,0,1)] tracking-widest mb-4">
-          DEEP DARK
+          AYUSH SINGLA
         </h1>
         <p className="text-xl md:text-3xl text-gray-300 drop-shadow-[0_2px_2px_rgba(0,0,0,1)]">
-          Descend into the Ancient City
+          Turning Ideas into High-Performance Products.
         </p>
       </div>
 
