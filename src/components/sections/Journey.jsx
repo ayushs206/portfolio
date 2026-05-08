@@ -6,12 +6,12 @@ export default function Journey() {
       desc: 'Born with an innate curiosity to understand, build, and explore the digital world.'
     },
     {
-      year: '2022',
+      year: '2023',
       title: '10th Completed',
       desc: 'Finished secondary education and began the transition into focused academic and technical exploration.'
     },
     {
-      year: '2024',
+      year: '2025',
       title: 'The JEE Grind Ends',
       desc: 'Completed two years of intense JEE preparation, strengthening problem-solving, discipline, and core fundamentals.'
     },
