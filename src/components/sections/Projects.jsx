@@ -5,6 +5,7 @@ export default function Projects() {
     { title: 'College Timetable', desc: 'No more cluttered Excel sheets. Access your timetable in a sleek interface and quickly find common free time with friends—so you can plan better, faster.', tech: 'React, Tailwind, Express', link: "https://owasp-projects-site-timetable.vercel.app" },
     { title: 'OSS Contributor (OWASP)', desc: 'Active contributor to an open-source GitHub repository focused on providing and curating OSS opportunities for developers worldwide.', tech: 'Open Source, Community, Git', link: "https://github.com/OWASP-STUDENT-CHAPTER/oss-programs" },
     { title: 'Veriflow', desc: 'A npm package that provides basic backend file structure for authentication via JWT', tech: 'Node, Express, JWT, Resend', link: "https://www.npmjs.com/package/create-veriflow-auth" },
+    { title: 'Botflow', desc: 'A npm package that provides basic discord bot structure', tech: 'Node, Discord.js, Json', link: "https://www.npmjs.com/package/create-botflow" },
   ];
 
   return (
