@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 export default function Projects() {
   const projects = [
     { title: 'StudySync', desc: 'A web application that helps students manage their study schedules, save notes, manage tasks', tech: 'React, Node.js, Express', link: "https://studysync.ayushsingla.dev" },
+    { title: 'SplitWise', desc: 'A simple monitor to manage trip expenses and split bills later, No Emails just username and password. You might just use website, or fork the repo and host by your side.', tech: 'Nodejs, Express, Jwt', link: "https://splitwise.ayushsingla.dev" },
     { title: 'Expense Calc', desc: 'A simple calculator to calculate and store your payment transactions. Just login via username and password and access your data anytime.', tech: 'Nodejs, Express, Jwt', link: "https://exp.ayushsingla.dev" },
     { title: 'Emi Calc', desc: 'A simple calculator to calculate EMI payments. (Either by approximated payable amount or by number of installments)', tech: 'Html, Css, JavaScript', link: "https://emi.ayushsingla.dev" },
     { title: 'Instagram Profile Roaster', desc: 'It is a web application that generates humorous roasts based on publicly available Instagram profile information. The project consists of a React frontend and a Node.js/Express backend that extracts profile metadata and generates contextual roasts.', tech: 'React, Node.js, Express', link: "https://github.com/ayushs206/ig-profile-roaster" },
