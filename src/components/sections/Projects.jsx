@@ -2,10 +2,15 @@ import { Link } from "react-router-dom";
 
 export default function Projects() {
   const projects = [
+    { title: 'StudySync', desc: 'A web application that helps students manage their study schedules, save notes, manage tasks', tech: 'React, Node.js, Express', link: "https://studysync.ayushsingla.dev" },
+    { title: 'Expense Calc', desc: 'A simple calculator to calculate and store your payment transactions. Just login via username and password and access your data anytime.', tech: 'Nodejs, Express, Jwt', link: "https://exp.ayushsingla.dev" },
+    { title: 'Emi Calc', desc: 'A simple calculator to calculate EMI payments. (Either by approximated payable amount or by number of installments)', tech: 'Html, Css, JavaScript', link: "https://emi.ayushsingla.dev" },
+    { title: 'Instagram Profile Roaster', desc: 'It is a web application that generates humorous roasts based on publicly available Instagram profile information. The project consists of a React frontend and a Node.js/Express backend that extracts profile metadata and generates contextual roasts.', tech: 'React, Node.js, Express', link: "https://github.com/ayushs206/ig-profile-roaster" },
+    { title: 'Botflow', desc: 'A npm package that provides basic discord bot structure', tech: 'Node, Discord.js, Json', link: "https://www.npmjs.com/package/create-botflow" },
+    { title: 'Veriflow', desc: 'A npm package that provides basic backend file structure for authentication via JWT', tech: 'Node, Express, JWT, Resend', link: "https://www.npmjs.com/package/create-veriflow-auth" },
+    { title: 'SMTP Server', desc: 'A simple SMTP server implementation. Sends all emails to a api endpoint configurable in the environment variables.', tech: 'Node.js, Express', link: "https://github.com/ayushs206/smtp-server" },
     { title: 'College Timetable', desc: 'No more cluttered Excel sheets. Access your timetable in a sleek interface and quickly find common free time with friends—so you can plan better, faster.', tech: 'React, Tailwind, Express', link: "https://owasp-projects-site-timetable.vercel.app" },
     { title: 'OSS Contributor (OWASP)', desc: 'Active contributor to an open-source GitHub repository focused on providing and curating OSS opportunities for developers worldwide.', tech: 'Open Source, Community, Git', link: "https://github.com/OWASP-STUDENT-CHAPTER/oss-programs" },
-    { title: 'Veriflow', desc: 'A npm package that provides basic backend file structure for authentication via JWT', tech: 'Node, Express, JWT, Resend', link: "https://www.npmjs.com/package/create-veriflow-auth" },
-    { title: 'Botflow', desc: 'A npm package that provides basic discord bot structure', tech: 'Node, Discord.js, Json', link: "https://www.npmjs.com/package/create-botflow" },
   ];
 
   return (
