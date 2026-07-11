@@ -19,7 +19,13 @@ export default function Journey() {
       year: '2025',
       title: 'B.Tech — First Year',
       desc: 'Stepping deeper into full-stack development while building real-world systems and scalable applications.'
-    }
+    },
+    {
+      year: '2026',
+      title: 'B.Tech — Second Year',
+      desc: 'Continuing to build on foundational knowledge while diving deeper into specialized areas of computer science.'
+    },
+
 
   ]
 

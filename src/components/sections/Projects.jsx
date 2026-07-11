@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 export default function Projects() {
   const projects = [
     { title: 'StudySync', desc: 'A web application that helps students manage their study schedules, save notes, manage tasks', tech: 'React, Node.js, Express', link: "https://studysync.ayushsingla.dev" },
+    { title: 'Parcel', desc: 'A lightweight website to ditch github actions to deploy your projects on your own virtual machines, replicating some features from vercel', tech: 'Html/Css, Node.js, Express', link: "https://parcel.ayushsingla.dev" },
     { title: 'SplitWise', desc: 'A simple monitor to manage trip expenses and split bills later, No Emails just username and password. You might just use website, or fork the repo and host by your side.', tech: 'Nodejs, Express, Jwt', link: "https://splitwise.ayushsingla.dev" },
     { title: 'Expense Calc', desc: 'A simple calculator to calculate and store your payment transactions. Just login via username and password and access your data anytime.', tech: 'Nodejs, Express, Jwt', link: "https://exp.ayushsingla.dev" },
     { title: 'Emi Calc', desc: 'A simple calculator to calculate EMI payments. (Either by approximated payable amount or by number of installments)', tech: 'Html, Css, JavaScript', link: "https://emi.ayushsingla.dev" },
